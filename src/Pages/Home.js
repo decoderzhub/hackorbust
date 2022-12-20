@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
+import MenuIcon from '@mui/icons-material/Menu';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -42,6 +42,7 @@ export default function Home() {
   const navigate = useNavigate();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -82,9 +83,9 @@ export default function Home() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <MenuIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            HackOrBust
+            Wi-Fi Professionals
           </Typography>
           {auth && (
             <div>
@@ -138,7 +139,7 @@ export default function Home() {
               color="text.primary"
               gutterBottom
             >
-              Album layout
+              HackOrBust
             </Typography>
             <Typography
               variant="h5"
@@ -174,6 +175,7 @@ export default function Home() {
                   }}
                 >
                   <CardMedia
+                    style={{paddingTop: "0px"}}
                     component="img"
                     sx={{
                       // 16:9
