@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useLocation } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -22,8 +23,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.HackOrBust.com/">
+        HackOrBust.com
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -38,6 +39,7 @@ const theme = createTheme({
 });
 
 export default function Login({ setEmail, setPassword, setState }) {
+  const location = useLocation()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,6 +47,16 @@ export default function Login({ setEmail, setPassword, setState }) {
     setPassword(data.get("password"))
     setState("Login")
   };
+
+  useEffect(() => {
+    setEmail(location.setEmail)
+    setPassword(location.setPassword)
+    setState(location.state)
+    return () => {
+      
+    }
+  }, [location])
+  
 
   return (
     <ThemeProvider theme={theme}>
