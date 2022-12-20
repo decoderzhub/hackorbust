@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./CSS/App.css";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
@@ -10,7 +10,7 @@ import {
   Routes,
   Route,
   useNavigate,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 import { app } from "./Utilities/firebase-config";
 import {
@@ -28,8 +28,8 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.setState === ""){
-      return
+    if (location.setState === "") {
+      return;
     }
 
     let authToken = sessionStorage.getItem("Auth Token");
@@ -58,7 +58,7 @@ function App() {
     if (state === "Login") {
       signInWithEmailAndPassword(authentication, email, password)
         .then((response) => {
-          navigate("/home", {setEmail, setPassword});
+          navigate("/home", { setEmail, setPassword });
           sessionStorage.setItem(
             "Auth Token",
             response._tokenResponse.refreshToken
@@ -101,7 +101,11 @@ function App() {
               />
             }
           />
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+                <Home />            }
+          />
         </Routes>
       </>
     </div>
