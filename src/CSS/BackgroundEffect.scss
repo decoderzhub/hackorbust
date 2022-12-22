@@ -1,0 +1,125 @@
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box !important
+// }
+
+// html, body {
+//   height: 100%
+// }
+
+// body {
+//   z-index: -999 !important;
+//   width: 100vw;
+//   height: 100vh;
+//   line-height: 1.6;
+//   position: relative;
+//   font-family: sans-serif;
+//   overflow-y: scroll;
+//   display: contents;
+// }
+
+// body {
+//   z-index: 0;
+//   display: relative;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
+//   background: radial-gradient(ellipse at bottom, #000000 0%, #000000 100%);
+//   overflow-y: scroll;
+// }
+
+.lines {
+  position: relative;
+  top: 0px;
+  left:0px;
+  right: 0px;
+  height: 100%;
+  margin: auto;
+  max-width: 50vw;
+  opacity: 0.3;
+}
+
+.line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 0%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 15vh;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+    animation: drop 7s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  }
+  
+  &:nth-child(1){
+    margin-left: 25%;
+    &::after{
+      animation-delay: 2s
+    }
+  }
+  
+  &:nth-child(2){
+    margin-left: 50%;
+    &::after{
+      animation-delay: 2.5s
+    }
+  }
+  &:nth-child(3){
+    margin-left: 75%;
+    &::after{
+      animation-delay: 1.5s
+    }
+  }
+  &:nth-child(5){
+    margin-left: 100%;
+    &::after{
+      animation-delay: 3.5s
+    }
+  }
+  &:nth-child(6){
+    margin-left: 12%;
+    &::after{
+      animation-delay: 0.5s
+    }
+  }
+  &:nth-child(7){
+    margin-left: 37.5%;
+    &::after{
+      animation-delay: 0.5s
+    }
+  }
+  &:nth-child(8){
+    margin-left: 62.5%;
+    &::after{
+      animation-delay: 0.5s
+    }
+  }
+  &:nth-child(9){
+    margin-left: 87.5%;
+    &::after{
+      animation-delay: 0.5s
+    }
+  }
+}
+
+@keyframes drop {
+  0% {
+    top: -50%
+  }
+  100% {
+    top: 110%
+  }
+}

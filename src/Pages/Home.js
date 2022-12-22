@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -59,9 +59,18 @@ const theme = createTheme();
 
 export default function Home() {
   const navigate = useNavigate();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isHovering, setIsHovering] = useState(-1);
 
+  const handleMouseOver = (i) => {
+    console.log(i)
+    setIsHovering(i);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(-1);
+  };
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -155,14 +164,18 @@ export default function Home() {
       </AppBar>
       <main>
         <div className="background-container">
-          <div className="stars"/>
-            <div className="twinkling"/> 
-               <div className="clouds"/>
-               <img className="image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" alt="The Moon"/>
-               <ShootingStars/>
+          <div className="stars" />
+          <div className="twinkling" />
+          <div className="clouds" />
+          <img
+            className="image"
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png"
+            alt="The Moon"
+          />
+          <ShootingStars />
 
-                {/* Hero unit */}
-                {/* <Box
+          {/* Hero unit */}
+          {/* <Box
           sx={{
             bgcolor: "background.paper",
             pt: 8,
@@ -170,103 +183,102 @@ export default function Home() {
             opacity: 0
           }}
         > */}
-                <Container maxWidth="sm" style={{ zIndex: "1000 !important" }}>
-                  <Logo />
-                </Container>
-                <Container maxWidth="sm">
-                  <Typography
-                    variant="h6"
-                    align="center"
-                    color="text.primary"
-                    paragraph
-                    style={{ marginTop: "-100px" }}
+          <Container maxWidth="sm" style={{ zIndex: "1000 !important" }}>
+            <Logo />
+          </Container>
+          <Container maxWidth="sm">
+            <Typography
+              variant="h6"
+              align="center"
+              color="text.primary"
+              paragraph
+              style={{ marginTop: "-100px" }}
+            >
+              Weclome to HackOrBust where you can learn how to penetrate
+              wireless networks. These wireless networks range from routers to
+              wireless devices. Come here to practice and compete agains others
+              in our HackOrBust battlegrounds!
+            </Typography>
+            <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+              style={{ paddingBottom: "30px" }}
+            >
+              <Button variant="contained">Subscribe</Button>
+              <Button variant="outlined">Learn More</Button>
+            </Stack>
+          </Container>
+          {/* </Box> */}
+          <Container sx={{ py: 1 }} maxWidth="md">
+            {/* End hero unit */}
+            <Grid container spacing={8}>
+              {cards.map((card, index) => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card
+                    sx={{
+                      height: "100%",
+                      width: "120%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                    onMouseEnter={() => handleMouseOver(index)} 
+                    onMouseOut={handleMouseOut}
                   >
-                    Weclome to HackOrBust where you can learn how to penetrate
-                    wireless networks. These wireless networks range from
-                    routers to wireless devices. Come here to practice and
-                    compete agains others in our HackOrBust battlegrounds!
-                  </Typography>
-                  <Stack
-                    sx={{ pt: 4 }}
-                    direction="row"
-                    spacing={2}
-                    justifyContent="center"
-                    style={{ paddingBottom: "30px" }}
-                  >
-                    <Button variant="contained">Subscribe</Button>
-                    <Button variant="outlined">Learn More</Button>
-                  </Stack>
-                </Container>
-                {/* </Box> */}
-                <Container sx={{ py: 1 }} maxWidth="md">
-                  {/* End hero unit */}
-                  <Grid container spacing={8}>
-                    {cards.map((card, index) => (
-                      <Grid item key={card} xs={12} sm={6} md={4}>
-                        <Card
-                          sx={{
-                            height: "100%",
-                            width: "120%",
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                        >
-                          <CardMedia
-                            style={{ paddingTop: "0px" }}
-                            component="img"
-                            sx={{
-                              // 16:9
-                              pt: "56.25%",
-                            }}
-                            image={handleImage(index)}
-                            alt="random"
-                          />
-                          <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="h2"
-                            >
-                              {index === 0 && "Novice"}
-                              {index === 1 && "Intermediate"}
-                              {index === 2 && "Professional"}
-                            </Typography>
-                            <Typography>
-                              {index === 0 &&
-                                "Enter here if you know the basics and ready to get more keystroke reps."}
-                              {index === 1 &&
-                                "You know what you're doing and ready for a challenge."}
-                              {index === 2 &&
-                                "Earn incentives for your hardwork. Get the Flags and pop some tags!"}
-                            </Typography>
-                          </CardContent>
-                          <CardActions>
-                            <Button size="small" sx={{ flexGrow: 1 }}>
-                              {index === 0 && "You gonna learn today!"}
-                              {index === 1 && "Let the games begin!"}
-                              {index === 2 && "Danger zone!"}
-                            </Button>
-                          </CardActions>
-                        </Card>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Container>
+                    <CardMedia
+                      style={{ paddingTop: "0px" }}
+                      component="img"
+                      sx={{
+                        // 16:9
+                        pt: "56.25%",
+                      }}
+                      image={handleImage(index)}
+                      alt="random"
+                    >
+                    </CardMedia>
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {index === 0 && "Novice"}
+                        {index === 1 && "Intermediate"}
+                        {index === 2 && "Professional"}
+                      </Typography>
+                      <Typography>
+                        {index === 0 &&
+                          "Enter here if you know the basics and ready to get more keystroke reps."}
+                        {index === 1 &&
+                          "You know what you're doing and ready for a challenge."}
+                        {index === 2 &&
+                          "Earn incentives for your hardwork. Get the Flags and pop some tags!"}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" sx={{ flexGrow: 1 }}>
+                        {index === 0 && "You gonna learn today!"}
+                        {index === 1 && "Let the games begin!"}
+                        {index === 2 && "Danger zone!"}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
 
-                {/* Footer */}
-                <Typography variant="h6" align="center" gutterBottom>
-                  Don't give up...
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  align="center"
-                  color="text.secondary"
-                  component="p"
-                >
-                  You&apos;re A God D*#? Wi-Fi Professional!
-                </Typography>
-                <Copyright />
-                {/* End footer */}
+          {/* Footer */}
+          <Typography variant="h6" align="center" gutterBottom>
+            Don't give up...
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="text.secondary"
+            component="p"
+          >
+            You&apos;re A God D*#? Wi-Fi Professional!
+          </Typography>
+          <Copyright />
+          {/* End footer */}
         </div>
       </main>
     </ThemeProvider>
