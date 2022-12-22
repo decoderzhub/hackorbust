@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,6 +13,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
+import { grey } from "@mui/material/colors";
+import Logo from "../Components/Logo";
+import BackgroundEffect from "../Components/BackgroundEffect";
+import "../CSS/BackgroundEffect.scss";
+import zIndex from "@mui/material/styles/zIndex";
 
 function Copyright(props) {
   return (
@@ -34,29 +39,74 @@ function Copyright(props) {
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
   },
 });
 
-export default function Login({ setEmail, setPassword, setState }) {
-  const location = useLocation()
+export default function Login({ setEmail, setPassword, setState, onload }) {
+  const location = useLocation();
+  const [image, setImage] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setEmail(data.get("email"))
-    setPassword(data.get("password"))
-    setState("Login")
+    setEmail(data.get("email"));
+    setPassword(data.get("password"));
+    setState("Login");
   };
 
   useEffect(() => {
-    setEmail(location.setEmail)
-    setPassword(location.setPassword)
-    setState(location.state)
-    return () => {
-      
+    setEmail(location.setEmail);
+    setPassword(location.setPassword);
+    setState(location.state);
+    return () => {};
+  }, [setEmail, setPassword, setState, location]);
+
+  useEffect(() => {
+    if (onload === 1) {
+      let min = Math.ceil(1);
+      let max = Math.floor(6);
+      let randnum = Math.floor(Math.random() * (max - min + 1)) + min;
+      imageSelector(randnum);
     }
-  }, [location])
-  
+    return () => {};
+  }, [onload]);
+
+  function imageSelector(num) {
+    switch (num) {
+      case 1:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/uMyx3vNEDMXKLGbjeKkw/uMyx3vNEDMXKLGbjeKkw--1--910dr.jpg)"
+        );
+        break;
+      case 2:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/5U8N1CR5Is9x6xHhj4yW/5U8N1CR5Is9x6xHhj4yW--1--aofva.jpg)"
+        );
+        break;
+      case 3:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/L3Ft3QLEYTrtMjqi1Ywq/L3Ft3QLEYTrtMjqi1Ywq--1--q71og.jpg)"
+        );
+        break;
+      case 4:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/S8xkw87IxXLiZZXOqaIv/S8xkw87IxXLiZZXOqaIv--1--lfw60.jpg)"
+        );
+        break;
+      case 5:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/wpehXmCpMRKxDyfyBzP4/wpehXmCpMRKxDyfyBzP4--1--vx872.jpg)"
+        );
+        break;
+      case 6:
+        setImage(
+          "url(https://images.nightcafe.studio/jobs/Qv1Cais36KlYgnLT6oiz/Qv1Cais36KlYgnLT6oiz--1--985tf.jpg)"
+        );
+        break;
+      default:
+        return "";
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -68,7 +118,7 @@ export default function Login({ setEmail, setPassword, setState }) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: image,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -79,6 +129,7 @@ export default function Login({ setEmail, setPassword, setState }) {
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <BackgroundEffect/>
           <Box
             sx={{
               my: 8,
@@ -87,8 +138,10 @@ export default function Login({ setEmail, setPassword, setState }) {
               flexDirection: "column",
               alignItems: "center",
             }}
+            style={{zIndex: 1, position: "absolute", top: 0}}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Logo />
+            <Avatar sx={{ m: 1, bgcolor: grey }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">

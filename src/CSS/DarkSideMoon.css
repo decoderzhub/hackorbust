@@ -47,7 +47,7 @@
 .stars {
   z-index: -4 !important;
   background: black
-    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png") repeat;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -101,4 +101,10 @@
   position: absolute;
   z-index: -3;
   right: 20px;
+  mask-image: radial-gradient(
+    white 0%,
+    white 10%,
+    transparent 90%,
+    transparent
+  );
 }

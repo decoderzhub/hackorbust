@@ -23,14 +23,16 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [onload, setOnload] = useState("");
   const [state, setState] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (location.setState === "") {
-      return;
-    }
+    setOnload(1);
+    // if (location.setState === "") {
+    //   return;
+    // }
 
     let authToken = sessionStorage.getItem("Auth Token");
 
@@ -87,6 +89,7 @@ function App() {
                 setEmail={setEmail}
                 setPassword={setPassword}
                 setState={setState}
+                onload={onload}
               />
             }
           />
@@ -104,7 +107,7 @@ function App() {
           <Route
             path="/home"
             element={
-                <Home />            }
+                <Home />}
           />
         </Routes>
       </>

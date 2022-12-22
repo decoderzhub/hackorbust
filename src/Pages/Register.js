@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
+import Logo from "../Components/Logo";
 
 function Copyright(props) {
   return (
@@ -37,14 +39,19 @@ const theme = createTheme({
   },
 });
 
-export default function Register({ setPassword, setEmail, setUsername, setState }) {
+export default function Register({
+  setPassword,
+  setEmail,
+  setUsername,
+  setState,
+}) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);    
-    setEmail(data.get("email"))
-    setPassword(data.get("password"))
-    setUsername(data.get("username"))
-    setState("Register")
+    const data = new FormData(event.currentTarget);
+    setEmail(data.get("email"));
+    setPassword(data.get("password"));
+    setUsername(data.get("username"));
+    setState("Register");
   };
 
   return (
@@ -59,7 +66,8 @@ export default function Register({ setPassword, setEmail, setUsername, setState 
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Logo/>
+          <Avatar sx={{ m: 1, bgcolor: grey }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -68,7 +76,7 @@ export default function Register({ setPassword, setEmail, setUsername, setState 
           <Box
             component="form"
             noValidate
-            onSubmit={(handleSubmit)}
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
