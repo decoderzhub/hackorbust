@@ -3,6 +3,8 @@ import "./CSS/App.css";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
+import Footer from "./Components/Footer";
+import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -10,7 +12,6 @@ import {
   Routes,
   Route,
   useNavigate,
-  useLocation,
 } from "react-router-dom";
 import { app } from "./Utilities/firebase-config";
 import {
@@ -26,7 +27,6 @@ function App() {
   const [onload, setOnload] = useState("");
   const [state, setState] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     setOnload(1);
@@ -77,6 +77,11 @@ function App() {
     }
   }, [state, email, password]);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("Auth Token");
+    navigate("/login", { setEmail: "", setPassword: "", setState: "" });
+  };
+
   return (
     <div className="App">
       <>
@@ -107,7 +112,12 @@ function App() {
           <Route
             path="/home"
             element={
-                <Home />}
+              <div>
+                <ResponsiveAppBar handleLogout={handleLogout} />
+                <Home />
+                <Footer />
+              </div>
+            }
           />
         </Routes>
       </>

@@ -17,7 +17,6 @@ import { grey } from "@mui/material/colors";
 import Logo from "../Components/Logo";
 import BackgroundEffect from "../Components/BackgroundEffect";
 import "../CSS/BackgroundEffect.scss";
-import zIndex from "@mui/material/styles/zIndex";
 
 function Copyright(props) {
   return (

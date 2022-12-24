@@ -17,30 +17,11 @@ import ShootingStars from "../Components/ShootingStars";
 import ResponsiveAppBar from "../Components/ResponsiveAppBar";
 import Stack from "@mui/material/Stack";
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://www.HackOrBust.com/">
-        HackOrBust
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const cards = [1, 2, 3];
 
 export default function Home() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(true);
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("Auth Token");
-    navigate("/login", { setEmail: "", setPassword: "", setState: "" });
-  };
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -79,7 +60,6 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ResponsiveAppBar handleLogout={handleLogout} />
       <main>
         <div className="background-container">
           <div className="stars" />
@@ -163,26 +143,6 @@ export default function Home() {
             </Grid>
           </Container>
         </div>
-        <Box
-          component="footer"
-          sx={{
-            py: 3,
-            px: 2,
-            mt: "auto",
-            backgroundColor: (theme) =>
-              theme.palette.grey === "dark"
-                ? theme.palette.grey[900]
-                : theme.palette.grey[900],
-            marginTop:40
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography variant="body1">
-              You&apos;re A God D*#? Wi-Fi Professional!
-            </Typography>
-            <Copyright />
-          </Container>
-        </Box>
       </main>
     </ThemeProvider>
   );

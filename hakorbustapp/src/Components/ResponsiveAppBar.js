@@ -11,6 +11,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Logo2 from "../Images/Logo2.png";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
 
 const pages = ["Subscribe", "About", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -43,7 +46,15 @@ function ResponsiveAppBar(props) {
     }
   };
 
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
+    <ThemeProvider theme={theme}>
+    <CssBaseline>
     <AppBar position="static">
       <Box style={{ width: "98%", alignSelf: "center" }}>
         <Toolbar disableGutters>
@@ -140,6 +151,8 @@ function ResponsiveAppBar(props) {
         </Toolbar>
       </Box>
     </AppBar>
+    </CssBaseline>
+    </ThemeProvider>
   );
 }
 export default ResponsiveAppBar;
