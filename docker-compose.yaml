@@ -8,3 +8,13 @@ services:
     volumes:
       - ./hackorbust_api:/app
       - /app/node_modules
+  hackorbustapp:
+    build: ./hackorbustapp
+    container_name: hackorbustapp_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./hackorbustapp:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
