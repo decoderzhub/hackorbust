@@ -24,7 +24,7 @@ function Footer() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "90vh",
+        minHeight: "92vh",
         zIndex: -1,
       }}
     >
