@@ -28,7 +28,7 @@ export default function Terminal(props) {
     }
 
     if (!authToken) {
-      props.navigate("/login");
+      props.navigate("/");
     }
     return () => {
       <div>Home Page</div>;

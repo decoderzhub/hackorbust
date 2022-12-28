@@ -72,11 +72,11 @@ function App() {
           }
         });
     }
-  }, [state, email, password]);
+  }, []);
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/login", { setEmail: "", setPassword: "", setState: "" });
+    navigate("/", { setEmail: "", setPassword: "", setState: "" });
   };
 
   return (
@@ -84,7 +84,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route
-            path="/login"
+            path="/"
              index element={
               <Login
                 setEmail={setEmail}

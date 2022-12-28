@@ -54,7 +54,7 @@ export default function Home() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/login", { setEmail: "", setPassword: "", setState: "" });
+    navigate("/", { setEmail: "", setPassword: "", setState: "" });
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function Home() {
     }
 
     if (!authToken) {
-      navigate("/login");
+      navigate("/");
     }
     return () => {
       <div>Home Page</div>;

@@ -33,7 +33,7 @@ export default function Novice(props) {
     }
 
     if (!authToken) {
-      props.navigate("/login");
+      props.navigate("/");
     }
 
     return () => {

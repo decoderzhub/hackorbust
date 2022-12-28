@@ -25,7 +25,7 @@ export default function Home(props) {
     }
 
     if (!authToken) {
-      props.navigate("/login");
+      props.navigate("/");
     }
     return () => {
       <div>Home Page</div>;
