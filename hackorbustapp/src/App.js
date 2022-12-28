@@ -5,6 +5,7 @@ import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
 import Novice from "./Pages/Novice";
+import Terminal from "./Pages/Terminal";
 import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,11 +32,12 @@ function App() {
     setOnload(1);
     
 
-    let authToken = sessionStorage.getItem("Auth Token");
+    // let authToken = sessionStorage.getItem("Auth Token");
+    
+    // if (authToken) {
 
-    if (authToken) {
-      navigate("/home");
-    }
+    //   navigate("/home");
+    // }
     //console.log(state);
     //console.log(email, password);
     const authentication = getAuth();
@@ -129,7 +131,7 @@ function App() {
             element={
               <div>
                 <ResponsiveAppBar navigate={navigate} handleLogout={handleLogout} />
-                <Novice navigate={navigate}/>
+                <Terminal navigate={navigate}/>
                 <Footer />
               </div>
             }
