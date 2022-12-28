@@ -85,7 +85,7 @@ function App() {
         <Routes>
           <Route
             path="/login"
-            element={
+             index element={
               <Login
                 setEmail={setEmail}
                 setPassword={setPassword}
