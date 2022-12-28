@@ -72,7 +72,7 @@ function App() {
           }
         });
     }
-  }, []);
+  }, [state, email, password]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
@@ -85,7 +85,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-             index element={
+            element={
               <Login
                 setEmail={setEmail}
                 setPassword={setPassword}
