@@ -76,7 +76,7 @@ export default function Terminal(props) {
                   <iframe
                     title="terminal"
                     src={
-                      "http://10.0.0.91:6807?hostname=kali&username=kali&password=a2FsaQo="
+                      "http://hackorbust.ddns.net:6807?hostname=kali&username=kali&password=a2FsaQo="
                     }
                     style={{
                       position: "relative",
