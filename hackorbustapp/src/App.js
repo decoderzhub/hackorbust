@@ -5,7 +5,6 @@ import Register from "./Pages/Register";
 import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
 import Novice from "./Pages/Novice";
-import Terminal from "./Pages/Terminal";
 import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -130,7 +129,7 @@ function App() {
             element={
               <div>
                 <ResponsiveAppBar navigate={navigate} handleLogout={handleLogout} />
-                <Terminal navigate={navigate}/>
+                <Novice navigate={navigate}/>
                 <Footer />
               </div>
             }
