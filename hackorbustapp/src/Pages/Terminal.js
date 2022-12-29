@@ -8,43 +8,48 @@ import { useSearchParams } from "react-router-dom";
 import VerticalLinearStepper from "../Components/VerticalLinearStepper";
 import ShootingStars from "../Components/ShootingStars";
 import { Typography } from "@mui/material";
-
+import { baseURL } from "../Utilities/static";
+import { authToken, fetchData } from "../Utilities/functions";
 
 export default function Terminal(props) {
-  const [searchparams] = useSearchParams();
+  const [searchparams] = useSearchParams("");
   const [course, setCourse] = useState("");
+  const [data, setData] = useState([{
+        label: 'Loading...',
+        description: `Retreving...`,
+      },]);
 
   useEffect(() => {
-    let temp = searchparams.get("course");
-    console.log(temp);
-    if (temp) {
-      setCourse(temp);
+    let params = searchparams.get("course");
+
+    if (params !== "") {
+      setCourse(params);
     }
 
-    let authToken = sessionStorage.getItem("Auth Token");
+    fetchData(baseURL, params, setData)
+    console.log(data);
+  }, []);
 
-    if (authToken) {
+  useEffect(() => {
+    if (authToken()) {
       props.navigate("/terminal");
     }
 
-    if (!authToken) {
+    if (!authToken()) {
       props.navigate("/");
     }
-    return () => {
-      <div>Home Page</div>;
-    };
   }, []);
 
   function Header() {
     switch (course) {
-        case "airmon-ng":
-            return ( 
-                <Typography variant="h5" component="h2" marginTop="2%">
-                learn {course} command instance
-                </Typography>
-            )
-        default:
-            break;
+      case "airmon-ng":
+        return (
+          <Typography variant="h5" component="h2" marginTop="2%">
+            learn {course} command instance
+          </Typography>
+        );
+      default:
+        break;
     }
   }
 
@@ -69,7 +74,7 @@ export default function Terminal(props) {
           />
           <ShootingStars />
           <Box sx={{ flexGrow: 1 }}>
-                <Header/>
+            <Header />
             <Grid container spacing={2}>
               <Grid xs={8}>
                 <Box sx={{ flexGrow: 1 }}>
@@ -99,11 +104,11 @@ export default function Terminal(props) {
                     alignContent: "center",
                     outlineStyle: "solid",
                     outlineColor: "red",
-                    marginRight: "3%"
+                    marginRight: "3%",
                   }}
                 >
                   <div style={{ marginTop: 50, marginLeft: "10%" }}>
-                    <VerticalLinearStepper />
+                    <VerticalLinearStepper data={data} />
                   </div>
                 </Box>
               </Grid>

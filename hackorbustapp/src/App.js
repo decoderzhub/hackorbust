@@ -13,6 +13,7 @@ import {
   Routes,
   Route,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
 import app  from "./Utilities/firebase-config";
 import {
@@ -27,6 +28,7 @@ function App() {
   const [onload, setOnload] = useState("");
   const [state, setState] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setOnload(1);
@@ -78,7 +80,10 @@ function App() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
-    navigate("/", { setEmail: "", setPassword: "", setState: "" });
+    setEmail("");
+    setPassword("");
+    setState("");
+    navigate("/");
   };
 
   return (
@@ -93,6 +98,7 @@ function App() {
                 setPassword={setPassword}
                 setState={setState}
                 onload={onload}
+                location={location}
               />
             }
           />
@@ -121,7 +127,7 @@ function App() {
             element={
               <div>
                 <ResponsiveAppBar navigate={navigate} handleLogout={handleLogout} />
-                <Novice navigate={navigate}/>
+                <Novice navigate={navigate} location={location}/>
                 <Footer />
               </div>
             }
@@ -131,7 +137,7 @@ function App() {
             element={
               <div>
                 <ResponsiveAppBar navigate={navigate} handleLogout={handleLogout} />
-                <Terminal navigate={navigate}/>
+                <Terminal navigate={navigate} location={location}/>
                 <Footer />
               </div>
             }

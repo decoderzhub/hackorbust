@@ -12,37 +12,24 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../CSS/DarkSideMoon.css";
 import ShootingStars from "../Components/ShootingStars";
 import Stack from "@mui/material/Stack";
-
-const cards = [1, 2, 3];
+import { homeImages, cards } from "../Utilities/static";
+import { authToken } from "../Utilities/functions";
 
 export default function Home(props) {
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
 
-    if (authToken) {
+    if (authToken()) {
       props.navigate("/home");
     }
 
-    if (!authToken) {
+    if (!authToken()) {
       props.navigate("/");
     }
-    return () => {
-      <div>Home Page</div>;
-    };
   }, []);
 
   const handleImage = (index) => {
-    switch (index) {
-      case 0:
-        return "https://images.nightcafe.studio/jobs/maWArkJZKHIdmOtatM1I/maWArkJZKHIdmOtatM1I--1--8rodo.jpg";
-      case 1:
-        return "https://images.nightcafe.studio/jobs/U7M6MkSoJKx9Z6dRMS6K/U7M6MkSoJKx9Z6dRMS6K--1--96hcx.jpg";
-      case 2:
-        return "https://images.nightcafe.studio/jobs/pjxEh1aO98pQq42LIwIB/pjxEh1aO98pQq42LIwIB--1--61rk7.jpg";
-      default:
-        break;
-    }
+   return homeImages[index]
   };
 
   function handleClick(e) {

@@ -7,38 +7,27 @@ import "../CSS/DarkSideMoon.css";
 import ShootingStars from "../Components/ShootingStars";
 import Stack from "@mui/material/Stack";
 import StickyHeadTable from "../Components/StickyHeadTable";
-
-const baseURL = "http://localhost:4000/novice";
+import { baseURL } from "../Utilities/static";
+import { authToken, fetchData } from "../Utilities/functions";
 
 export default function Novice(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(baseURL);
-      response.json().then((json) =>{
-        setData(json);
-      })
-    };
-    fetchData();
-    return () => {};
+    fetchData(baseURL, props, setData)
   }, []);
 
  
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
 
-    if (authToken) {
+    if (authToken()) {
       props.navigate("/novice");
     }
 
-    if (!authToken) {
+    if (!authToken()) {
       props.navigate("/");
     }
 
-    return () => {
-      <div>Home Page</div>;
-    };
   }, []);
 
   const theme = createTheme({
@@ -83,7 +72,7 @@ export default function Novice(props) {
             ></Stack>
           </Container>
           <Container sx={{ py: 1, paddingTop: "0", justifyContent: "center" }} maxWidth="lg">
-              <StickyHeadTable tableData={data} props={props} />
+              <StickyHeadTable tableData={data} props={props}/>
           </Container>
         </div>
       </main>

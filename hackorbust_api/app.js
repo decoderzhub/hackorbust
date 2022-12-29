@@ -12,11 +12,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/airmon-ng"), (req, res) => {
-  
-
-}
-
 app.get("/novice", (req, res) => {
   res.json([
     {
@@ -72,6 +67,28 @@ app.get("/novice", (req, res) => {
       difficulty: "easy",
       time: 5,
       completed: -1,
+    },
+  ]);
+});
+
+app.get("/airmon-ng", (req, res) => {
+  res.json([
+    {
+      label: "Monitor Mode",
+      description: `Place your wireless interface in monitor mode,
+                    by running the command:$ sudo airmon-ng start wlan0`,
+    },
+    {
+      label: "Create an ad group",
+      description:
+        "An ad group contains one or more ads which target a shared set of keywords.",
+    },
+    {
+      label: "Create an ad",
+      description: `Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.`,
     },
   ]);
 });
