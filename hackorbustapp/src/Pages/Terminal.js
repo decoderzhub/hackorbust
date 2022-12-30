@@ -7,7 +7,7 @@ import "../CSS/DarkSideMoon.css";
 import { useSearchParams } from "react-router-dom";
 import VerticalLinearStepper from "../Components/VerticalLinearStepper";
 import ShootingStars from "../Components/ShootingStars";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { baseURL } from "../Utilities/static";
 import { authToken, fetchData } from "../Utilities/functions";
 
@@ -53,11 +53,16 @@ export default function Terminal(props) {
     }
   }
 
+const openInNewTab = () => {
+    window.open('https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&', '_blank', 'noopener,noreferrer');
+};
+
   const theme = createTheme({
     palette: {
       mode: "dark",
     },
   });
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -93,7 +98,6 @@ export default function Terminal(props) {
                       outlineColor: "red",
                     }}
                   ></iframe>
-                  {window.open('https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&')}
                 </Box>
               </Grid>
               <Grid xs={4}>
@@ -110,6 +114,7 @@ export default function Terminal(props) {
                 >
                   <div style={{ marginTop: 50, marginLeft: "10%" }}>
                     <VerticalLinearStepper data={data} />
+                    <Button onClick={openInNewTab}></Button>
                   </div>
                 </Box>
               </Grid>
