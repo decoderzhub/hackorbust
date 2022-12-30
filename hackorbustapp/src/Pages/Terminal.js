@@ -7,7 +7,7 @@ import "../CSS/DarkSideMoon.css";
 import { useSearchParams } from "react-router-dom";
 import VerticalLinearStepper from "../Components/VerticalLinearStepper";
 import ShootingStars from "../Components/ShootingStars";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { baseURL } from "../Utilities/static";
 import { authToken, fetchData } from "../Utilities/functions";
 
@@ -46,23 +46,16 @@ export default function Terminal(props) {
     switch (course) {
       case "airmon-ng":
         return (
-          <Typography variant="h5" component="h2" marginTop="2%">
-            <Button onClick={openInNewTab}></Button>
-            learn {course} command instance
-          </Typography>
+          <div>
+            <Typography variant="h5" component="h2" marginTop="2%">
+              learn {course} command instance
+            </Typography>
+          </div>
         );
       default:
         break;
     }
   }
-
-  const openInNewTab = () => {
-    window.open(
-      "https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
 
   const theme = createTheme({
     palette: {
@@ -89,10 +82,23 @@ export default function Terminal(props) {
             <Grid container spacing={2}>
               <Grid xs={8}>
                 <Box sx={{ flexGrow: 1 }}>
+                  {/* <Iframe
+                    url="https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&"
+                    position="relative"
+                    width="95%"
+                    id="terminal"
+                    height="100vh"
+                    styles={{
+                      opacity: 0.7,
+                      outlineStyle: "outset",
+                      outlineColor: "red",
+                      marginTop: 50
+                    }}
+                  /> */}
                   <iframe
                     title="terminal"
                     src={
-                      "https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&"
+                      "https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=wifipro&password=a2FsaQo="
                     }
                     style={{
                       position: "relative",
