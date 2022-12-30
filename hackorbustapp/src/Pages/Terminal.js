@@ -14,10 +14,12 @@ import { authToken, fetchData } from "../Utilities/functions";
 export default function Terminal(props) {
   const [searchparams] = useSearchParams("");
   const [course, setCourse] = useState("");
-  const [data, setData] = useState([{
-        label: 'Loading...',
-        description: `Retreving...`,
-      },]);
+  const [data, setData] = useState([
+    {
+      label: "Loading...",
+      description: `Retreving...`,
+    },
+  ]);
 
   useEffect(() => {
     let params = searchparams.get("course");
@@ -26,7 +28,7 @@ export default function Terminal(props) {
       setCourse(params);
     }
 
-    fetchData(baseURL, params, setData)
+    fetchData(baseURL, params, setData);
     console.log(data);
   }, []);
 
@@ -45,6 +47,7 @@ export default function Terminal(props) {
       case "airmon-ng":
         return (
           <Typography variant="h5" component="h2" marginTop="2%">
+            <Button onClick={openInNewTab}></Button>
             learn {course} command instance
           </Typography>
         );
@@ -53,16 +56,19 @@ export default function Terminal(props) {
     }
   }
 
-const openInNewTab = () => {
-    window.open('https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&', '_blank', 'noopener,noreferrer');
-};
+  const openInNewTab = () => {
+    window.open(
+      "https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
 
   const theme = createTheme({
     palette: {
       mode: "dark",
     },
   });
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -114,7 +120,6 @@ const openInNewTab = () => {
                 >
                   <div style={{ marginTop: 50, marginLeft: "10%" }}>
                     <VerticalLinearStepper data={data} />
-                    <Button onClick={openInNewTab}></Button>
                   </div>
                 </Box>
               </Grid>
