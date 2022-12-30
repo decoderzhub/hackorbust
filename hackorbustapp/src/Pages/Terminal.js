@@ -93,6 +93,7 @@ export default function Terminal(props) {
                       outlineColor: "red",
                     }}
                   ></iframe>
+                  {window.open('https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&')}
                 </Box>
               </Grid>
               <Grid xs={4}>
