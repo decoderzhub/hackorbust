@@ -82,19 +82,6 @@ export default function Terminal(props) {
             <Grid container spacing={2}>
               <Grid xs={8}>
                 <Box sx={{ flexGrow: 1 }}>
-                  {/* <Iframe
-                    url="https://hackorbust.ddns.net:4433/?port=6808&hostname=kali&username=kali&password=a2FsaQo=&"
-                    position="relative"
-                    width="95%"
-                    id="terminal"
-                    height="100vh"
-                    styles={{
-                      opacity: 0.7,
-                      outlineStyle: "outset",
-                      outlineColor: "red",
-                      marginTop: 50
-                    }}
-                  /> */}
                   <iframe
                     title="terminal"
                     src={
