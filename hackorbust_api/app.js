@@ -75,20 +75,16 @@ app.get("/airmon-ng", (req, res) => {
   res.json([
     {
       label: "Monitor Mode",
-      description: `Place your wireless interface in monitor mode,
-                    by running the command:$ sudo airmon-ng start wlan0`,
+      description: `Place your interface wlan1 into monitor mode with the command: sudo ip link set wlan1 down                                  Password: kali`,
     },
     {
-      label: "Create an ad group",
+      label: "Change Mode",
       description:
-        "An ad group contains one or more ads which target a shared set of keywords.",
+        "Next command to change wlan1 to monitor mode: sudo iwconfig wlan1 mode monitor",
     },
     {
-      label: "Create an ad",
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
+      label: "Device Up",
+      description: `last step is to bring the wireless interface back up: sudo ip link dev wlan1 up`,
     },
   ]);
 });
