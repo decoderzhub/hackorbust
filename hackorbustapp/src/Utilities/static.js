@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:4000";
+export const baseURL = "http://hackorbust.ddns.net:55623";
 
 export const loginImages = [
     "url(https://images.nightcafe.studio/jobs/uMyx3vNEDMXKLGbjeKkw/uMyx3vNEDMXKLGbjeKkw--1--910dr.jpg)",
