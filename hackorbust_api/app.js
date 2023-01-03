@@ -75,7 +75,7 @@ app.get("/airmon-ng", (req, res) => {
   res.json([
     {
       label: "Monitor Mode",
-      description: `Place your interface wlan1 into monitor mode with the command: sudo ip link set wlan1 down                                  Password: kali`,
+      description: `Place your interface wlan1 into monitor mode with the command: sudo ip link set wlan1 down`,
     },
     {
       label: "Change Mode",
@@ -86,6 +86,15 @@ app.get("/airmon-ng", (req, res) => {
       label: "Device Up",
       description: `last step is to bring the wireless interface back up: sudo ip link dev wlan1 up`,
     },
+    {
+      label: "Check Interface",
+      description: `by running the command: sudo ip show wlan1 you can check to see if the device is back up`,
+    },
+    {
+      label: "Check Mode",
+      description: `finally we will check that the mode is in monitor mode by using command: iwconfig wlan1`,
+    },
+
   ]);
 });
 
