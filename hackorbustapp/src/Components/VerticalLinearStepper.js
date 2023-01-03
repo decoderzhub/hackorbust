@@ -46,7 +46,10 @@ export default function VerticalLinearStepper(props) {
   };
 
   return (
-    <Box sx={{ maxWidth: 500, backgroundColor: "rgb(18, 18, 18, 0)" }}>
+      <Box sx={{ maxWidth: 500, backgroundColor: "rgb(18, 18, 18, 0)" }}>
+        <Box sx={{ maxWidth: 500, backgroundColor: "rgb(18, 18, 18, 0)" }}>
+            Credentials: wifipro/kali
+        </Box>
       <Stepper activeStep={activeStep} orientation="vertical">
         {props.data.map((step, index) => (
           <Step key={step.label}>
