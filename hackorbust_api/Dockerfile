@@ -10,7 +10,7 @@ RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
 
 COPY . .
 
-EXPOSE 4000
+EXPOSE 55623
 
-CMD ["node", "app.js"]
+CMD ["node", "https_server.js"]
 

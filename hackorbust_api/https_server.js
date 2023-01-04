@@ -119,4 +119,5 @@ app.get("/airmon-ng", (req, res) => {
 https.createServer(https_options, app, function (req, res) {
   res.writeHead(200);
   res.end("Welcome to Node.js HTTPS Servern");
+  console.log(`HackOrBust API listening on port ${port}`)
   }).listen(port)
