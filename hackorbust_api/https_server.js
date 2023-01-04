@@ -1,7 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 443;
+const port = 55623;
+
+var https = require('https');
+var fs = require('fs');
+
+
+var https_options = {
+key: fs.readFileSync("./key.pem"),
+cert: fs.readFileSync("./cert.pem"),
+ca: [
+fs.readFileSync('./rootca.pem'),
+// fs.readFileSync('./rootca.crt')
+]
+};
 
 app.use(cors());
 
@@ -98,6 +111,12 @@ app.get("/airmon-ng", (req, res) => {
   ]);
 });
 
-app.listen(port, () => {
-  console.log(`HackOrBust API listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`HackOrBust API listening on port ${port}`);
+// });
+
+
+https.createServer(https_options, app, function (req, res) {
+  res.writeHead(200);
+  res.end("Welcome to Node.js HTTPS Servern");
+  }).listen(port)
