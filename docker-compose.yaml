@@ -4,7 +4,7 @@ services:
     build: ./hackorbust_api
     container_name: hackorbust_api_c
     ports:
-      - '4000:4000'
+      - '55623:55623'
     volumes:
       - ./hackorbust_api:/app
       - /app/node_modules
