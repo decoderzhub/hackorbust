@@ -8,10 +8,10 @@ var fs = require('fs');
 
 
 var https_options = {
-key: fs.readFileSync("./key.pem"),
-cert: fs.readFileSync("./cert.pem"),
+key: fs.readFileSync("ssl/key.pem"),
+cert: fs.readFileSync("ssl/cert.pem"),
 ca: [
-fs.readFileSync('./rootca.pem'),
+fs.readFileSync('ssl/rootca.pem'),
 // fs.readFileSync('./rootca.crt')
 ]
 };

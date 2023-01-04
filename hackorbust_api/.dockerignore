@@ -1,4 +1,2 @@
 node_modules
-hackorbust.crt
-hackorbust.key
-rootca.crt
+ssl
