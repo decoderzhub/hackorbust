@@ -10,10 +10,16 @@ import ShootingStars from "../Components/ShootingStars";
 import { Typography } from "@mui/material";
 import { baseURL } from "../Utilities/static";
 import { authToken, fetchData } from "../Utilities/functions";
+import { useInterval } from "../Components/useInterval";
+import BasicModal from "../Components/BasicModal";
+import Logo from "../Components/Logo";
+
+const FETCH_REFRESH_INTERVAL = 3000;
 
 export default function Terminal(props) {
   const [searchparams] = useSearchParams("");
   const [course, setCourse] = useState("");
+  const [acceptSSL, setAcceptSSL] = useState(false);
   const [data, setData] = useState([
     {
       label: "Loading...",
@@ -21,16 +27,50 @@ export default function Terminal(props) {
     },
   ]);
 
+  useInterval(
+    async () => {
+      console.log("Fetching Url");
+      const response = await fetch("https://hackorbust.ddns.net:4433", {
+        mode: "no-cors",
+      }).catch((error) => {
+        if (error) {
+          console.log("SSL needs to be accepted");
+        } else {
+          setAcceptSSL(true);
+        }
+      });
+      console.log(response);
+      if (response) {
+        setAcceptSSL(true);
+        sessionStorage.setItem(
+          "acceptSSL",
+          true
+        );
+        console.log(response.status);
+      }
+    },
+    FETCH_REFRESH_INTERVAL,
+    acceptSSL
+  );
+
   useEffect(() => {
+    let ssl = sessionStorage.getItem("acceptSSL")
+
+    if (ssl) {
+      setAcceptSSL(true)
+    }
+
     let params = searchparams.get("course");
 
     if (params !== "") {
       setCourse(params);
     }
-
-    fetchData(baseURL, params, setData);
-    console.log(data);
   }, []);
+
+  useEffect(() =>{
+    fetchData(baseURL, course, setData);
+      console.log(data);
+  })
 
   useEffect(() => {
     if (authToken()) {
@@ -66,6 +106,7 @@ export default function Terminal(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {acceptSSL?  null:<BasicModal />}
       <main>
         <div className="background-container">
           <div className="stars" />
@@ -82,21 +123,38 @@ export default function Terminal(props) {
             <Grid container spacing={2}>
               <Grid xs={8}>
                 <Box sx={{ flexGrow: 1 }}>
-                  <iframe
-                    title="terminal"
-                    src={
-                      "http://198.58.120.118:8888/?username=kali&password=kali&port=6807&hostname=198.58.120.118"
-                    }
-                    style={{
-                      position: "relative",
-                      marginTop: 50,
-                      width: "95%",
-                      height: "100vh",
-                      opacity: 0.7,
-                      outlineStyle: "outset",
-                      outlineColor: "red",
-                    }}
-                  ></iframe>
+                  {acceptSSL ? (
+                    <iframe
+                      title="terminal"
+                      src={
+                        "https://198.58.120.11:4433/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
+                      }
+                      style={{
+                        position: "relative",
+                        marginTop: 50,
+                        width: "95%",
+                        height: "100vh",
+                        opacity: 0.7,
+                        outlineStyle: "outset",
+                        outlineColor: "red",
+                      }}
+                    ></iframe>
+                  ) : (
+                    <div>
+                      <Logo
+                        style={{
+                          position: "relative",
+                          marginTop: 50,
+                          width: "95%",
+                          height: "100vh",
+                          opacity: 0.7,
+                          outlineStyle: "outset",
+                          outlineColor: "red",
+                        }}
+                      />
+                      <h2>Awaiting SSL to continue...</h2>
+                    </div>
+                  )}
                 </Box>
               </Grid>
               <Grid xs={4}>
