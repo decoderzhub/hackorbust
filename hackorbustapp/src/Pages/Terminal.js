@@ -127,7 +127,7 @@ export default function Terminal(props) {
                     <iframe
                       title="terminal"
                       src={
-                        "https://198.58.120.11:4433/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
+                        "https://198.58.120.118:4433/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
                       }
                       style={{
                         position: "relative",
