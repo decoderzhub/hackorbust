@@ -85,7 +85,7 @@ export default function Terminal(props) {
                   <iframe
                     title="terminal"
                     src={
-                      "https://hackorbust.ddns.net:4433/?port=6807&hostname=kali&username=wifipro&password=a2FsaQo=&command=tmux"
+                      "http://198.58.120.118:8888/?username=kali&password=kali&port=6807&hostname=198.58.120.118"
                     }
                     style={{
                       position: "relative",
