@@ -34,7 +34,7 @@ export default function BasicModal({acceptSSL}) {
   }, [acceptSSL])
   
   function handleClick() {
-    window.open("https://198.58.120.11:4433").focus()
+    window.open("https://198.58.120.118:4433").focus()
   }
 
 
