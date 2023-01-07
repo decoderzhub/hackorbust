@@ -34,7 +34,7 @@ export default function BasicModal({acceptSSL}) {
   }, [acceptSSL])
   
   function handleClick() {
-    window.open("https://hackorbust.ddns.net:4433").focus()
+    window.open("https://198.58.120.11:4433").focus()
   }
 
 
@@ -53,8 +53,8 @@ export default function BasicModal({acceptSSL}) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             If you haven't accepted SSL click on link
           </Typography>
-          <Link style={{color: "white", alignContent:"center", marginTop: 5}} onClick={handleClick}>
-            HackOrBust.ddns.net
+          <Link style={{color: "red", alignContent:"center", marginTop: 5}} onClick={handleClick}>
+            HackOrBust Kali VM
           </Link>{" "}
         </Box>
       </Modal>
