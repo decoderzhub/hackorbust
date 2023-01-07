@@ -67,10 +67,10 @@ export default function Terminal(props) {
     }
   }, []);
 
-  useEffect(() =>{
-    fetchData(baseURL, course, setData);
-      console.log(data);
-  })
+  // useEffect(() =>{
+  //   fetchData(baseURL, course, setData);
+  //     console.log(data);
+  // })
 
   useEffect(() => {
     if (authToken()) {
