@@ -9,17 +9,29 @@ import Stack from "@mui/material/Stack";
 import StickyHeadTable from "../Components/StickyHeadTable";
 import { baseURL } from "../Utilities/static";
 import { authToken, fetchData } from "../Utilities/functions";
+import { getDocs, collection, query, orderBy, documentId } from "firebase/firestore";
+import { db } from "../Utilities/firebase-config";
 
 export default function Novice(props) {
   const [data, setData] = useState([]);
-
   useEffect(() => {
-    fetchData(baseURL, props, setData)
+    retrieveDocs();
+
+    // fetchData(baseURL, props, setData)
   }, []);
 
- 
-  useEffect(() => {
+  async function retrieveDocs() {
+    let docRef = "Courses";
+    let extract = []
+    let docSnap = await getDocs(collection(db, docRef));
+    docSnap.forEach((doc) => {
+      console.log(doc.data());
+      extract.push(doc.data())
+    });
+    setData(extract)
+  }
 
+  useEffect(() => {
     if (authToken()) {
       props.navigate("/novice");
     }
@@ -27,7 +39,6 @@ export default function Novice(props) {
     if (!authToken()) {
       props.navigate("/");
     }
-
   }, []);
 
   const theme = createTheme({
@@ -71,8 +82,11 @@ export default function Novice(props) {
               style={{ paddingBottom: "30px" }}
             ></Stack>
           </Container>
-          <Container sx={{ py: 1, paddingTop: "0", justifyContent: "center" }} maxWidth="lg">
-              <StickyHeadTable tableData={data} props={props}/>
+          <Container
+            sx={{ py: 1, paddingTop: "0", justifyContent: "center" }}
+            maxWidth="lg"
+          >
+            <StickyHeadTable tableData={data} props={props} />
           </Container>
         </div>
       </main>
