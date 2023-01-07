@@ -30,7 +30,7 @@ export default function Terminal(props) {
   useInterval(
     async () => {
       console.log("Fetching Url");
-      const response = await fetch("https://hackorbust.ddns.net:4433", {
+      const response = await fetch("https://198.58.120.118:4433", {
         mode: "no-cors",
       }).catch((error) => {
         if (error) {
