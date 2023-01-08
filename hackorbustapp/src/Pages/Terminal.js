@@ -136,11 +136,31 @@ export default function Terminal(props) {
           <ShootingStars />
           <Box sx={{ flexGrow: 1 }}>
             <Header />
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
+              <Grid xs={2}></Grid>
               <Grid xs={8}>
-                <Box sx={{ flexGrow: 1}}>
-                  {acceptSSL ?  
-                    (
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    backgroundColor: "rgb(18, 18, 18, 0.7)",
+                    maxHeight: "80vh",
+                    alignContent: "center",
+                    outlineStyle: "solid",
+                    outlineColor: "red",
+                    margin: "0 20px 0 30px",
+                  }}
+                >
+                  <div style={{ marginTop: 50, marginLeft: "25%" }}>
+                    <VerticalLinearStepper data={data} />
+                  </div>
+                </Box>
+              </Grid>
+              <Grid xs={2}></Grid>
+            </Grid>
+            <Grid container spacing={1}>
+              <Grid xs={12}>
+                <Box sx={{ flexGrow: 1 }}>
+                  {acceptSSL ? (
                     <iframe
                       title="terminal"
                       src={
@@ -148,15 +168,15 @@ export default function Terminal(props) {
                       }
                       style={{
                         position: "relative",
-                        marginTop: 50,
-                        width: "95%",
+                        margin: "100px 20px 0 30px",
+                        width: "97.5%",
                         height: "100vh",
                         opacity: 0.7,
                         outlineStyle: "outset",
                         outlineColor: "red",
                       }}
                     ></iframe>
-                    ):(
+                  ) : (
                     <div>
                       <Logo
                         style={{
@@ -172,23 +192,6 @@ export default function Terminal(props) {
                       <h2>Awaiting SSL to continue...</h2>
                     </div>
                   )}
-                </Box>
-              </Grid>
-              <Grid xs={4}>
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    backgroundColor: "rgb(18, 18, 18, 0.7)",
-                    height: "100vh",
-                    alignContent: "center",
-                    outlineStyle: "solid",
-                    outlineColor: "red",
-                    marginRight: "3%",
-                  }}
-                >
-                  <div style={{ marginTop: 50, marginLeft: "10%" }}>
-                    <VerticalLinearStepper data={data} />
-                  </div>
                 </Box>
               </Grid>
             </Grid>
