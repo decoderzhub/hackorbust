@@ -16,9 +16,7 @@ import { homeImages, cards } from "../Utilities/static";
 import { authToken } from "../Utilities/functions";
 
 export default function Home(props) {
-
   useEffect(() => {
-
     if (authToken()) {
       props.navigate("/home");
     }
@@ -29,20 +27,19 @@ export default function Home(props) {
   }, []);
 
   const handleImage = (index) => {
-   return homeImages[index]
+    return homeImages[index];
   };
 
   function handleClick(e) {
-    const target = e.currentTarget.id
-    console.log(target)
+    const target = e.currentTarget.id;
+    console.log(target);
     switch (parseInt(target)) {
       case 0:
-        props.navigate("/novice")
+        props.navigate("/novice");
         break;
       default:
         break;
     }
-    
   }
 
   const theme = createTheme({
@@ -84,8 +81,7 @@ export default function Home(props) {
               spacing={2}
               justifyContent="center"
               style={{ paddingBottom: "30px" }}
-            >
-            </Stack>
+            ></Stack>
           </Container>
           <Container sx={{ py: 1, paddingTop: "0" }} maxWidth="lg">
             <Grid container spacing={12}>
@@ -125,7 +121,12 @@ export default function Home(props) {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" sx={{ flexGrow: 1 }} id={index} onClick={handleClick}>
+                      <Button
+                        size="small"
+                        sx={{ flexGrow: 1 }}
+                        id={index}
+                        onClick={handleClick}
+                      >
                         {index === 0 && "You gonna learn today!"}
                         {index === 1 && "Let the games begin!"}
                         {index === 2 && "Danger zone!"}
