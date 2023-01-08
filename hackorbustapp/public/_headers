@@ -1,8 +1,10 @@
 # a path:
 /*
   # headers for that path:
-  Referrer-Policy: orgin-when-cross-origin
-# another path:
-# /templates/index2.html
+  #Referrer-Policy: orgin-when-cross-origin
+  # another path:
+  # /templates/index2.html
   # headers for that path:
   # X-Frame-Options: SAMEORIGIN
+/*    /index.html    200
+
