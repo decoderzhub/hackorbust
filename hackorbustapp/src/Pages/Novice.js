@@ -7,9 +7,8 @@ import "../CSS/DarkSideMoon.css";
 import ShootingStars from "../Components/ShootingStars";
 import Stack from "@mui/material/Stack";
 import StickyHeadTable from "../Components/StickyHeadTable";
-import { baseURL } from "../Utilities/static";
-import { authToken, fetchData } from "../Utilities/functions";
-import { getDocs, collection, query, orderBy, documentId } from "firebase/firestore";
+import { authToken } from "../Utilities/functions";
+import { getDocs, collection, orderBy, query } from "firebase/firestore";
 import { db } from "../Utilities/firebase-config";
 
 export default function Novice(props) {
@@ -17,19 +16,18 @@ export default function Novice(props) {
   useEffect(() => {
     retrieveDocs();
 
-    // fetchData(baseURL, props, setData)
   }, []);
 
   async function retrieveDocs() {
-    let docRef = "Courses";
-    let extract = []
-    let docSnap = await getDocs(collection(db, docRef));
-    docSnap.forEach((doc) => {
-      console.log(doc.data());
-      extract.push(doc.data())
-    });
-    setData(extract)
-  }
+    let data = []
+    let docCollections = collection(db, "Courses");
+    const docQueryRef = query(docCollections, orderBy("id","asc"))
+    const result = await getDocs(docQueryRef);
+    result.forEach(doc => {
+        data.push(doc.data())
+    })
+    setData(data)
+}
 
   useEffect(() => {
     if (authToken()) {

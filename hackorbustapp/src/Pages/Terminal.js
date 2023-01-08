@@ -8,11 +8,12 @@ import { useSearchParams } from "react-router-dom";
 import VerticalLinearStepper from "../Components/VerticalLinearStepper";
 import ShootingStars from "../Components/ShootingStars";
 import { Typography } from "@mui/material";
-import { baseURL } from "../Utilities/static";
-import { authToken, fetchData } from "../Utilities/functions";
+import { authToken } from "../Utilities/functions";
 import { useInterval } from "../Components/useInterval";
 import BasicModal from "../Components/BasicModal";
 import Logo from "../Components/Logo";
+import { orderBy, query, collection, getDocs } from "firebase/firestore";
+import { db, app } from "../Utilities/firebase-config";
 
 const FETCH_REFRESH_INTERVAL = 3000;
 
@@ -65,12 +66,26 @@ export default function Terminal(props) {
     if (params !== "") {
       setCourse(params);
     }
+    retrieveDocs()
   }, []);
 
   // useEffect(() =>{
   //   fetchData(baseURL, course, setData);
   //     console.log(data);
   // })
+
+  async function retrieveDocs() {
+    let data = []
+    let docCollections = collection(db, "Courses","airmon-ng","airmon-ng-course");
+    const docQueryRef = query(docCollections, orderBy("id","asc"))
+    const result = await getDocs(docQueryRef);
+    result.forEach(doc => {
+        data.push(doc.data())
+    })
+    // console.log(data)
+    setData(data)
+}
+  
 
   useEffect(() => {
     if (authToken()) {
