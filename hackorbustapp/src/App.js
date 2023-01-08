@@ -6,13 +6,14 @@ import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
 import Novice from "./Pages/Novice";
 import Terminal from "./Pages/Terminal";
+import NotFoundPage from "./Components/NotFoundPage";
 import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Routes,
   Route,
-  useNavigate,
+  useNavigate,  
   useLocation,
 } from "react-router-dom";
 import app  from "./Utilities/firebase-config";
@@ -21,6 +22,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+
 
 function App() {
   const [email, setEmail] = useState("");
@@ -142,6 +144,7 @@ function App() {
               </div>
             }
           />
+          <Route path="*" element={<NotFoundPage/>} />
         </Routes>
     </div>
   );
