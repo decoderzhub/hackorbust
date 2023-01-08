@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export function useInterval(callback, delay, acceptSSL) {
   // Set up the interval.

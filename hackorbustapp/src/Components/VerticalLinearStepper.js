@@ -7,7 +7,6 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { hexToRgb, rgbToHex } from '@mui/material';
 
 export default function VerticalLinearStepper(props) {
   const [activeStep, setActiveStep] = React.useState(0);

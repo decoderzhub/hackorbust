@@ -13,7 +13,7 @@ import { useInterval } from "../Components/useInterval";
 import BasicModal from "../Components/BasicModal";
 import Logo from "../Components/Logo";
 import { orderBy, query, collection, getDocs } from "firebase/firestore";
-import { db, app } from "../Utilities/firebase-config";
+import { db } from "../Utilities/firebase-config";
 
 const FETCH_REFRESH_INTERVAL = 3000;
 
@@ -43,10 +43,7 @@ export default function Terminal(props) {
       console.log(response);
       if (response) {
         setAcceptSSL(true);
-        sessionStorage.setItem(
-          "acceptSSL",
-          true
-        );
+        sessionStorage.setItem("acceptSSL", true);
         console.log(response.status);
       }
     },
@@ -55,10 +52,10 @@ export default function Terminal(props) {
   );
 
   useEffect(() => {
-    let ssl = sessionStorage.getItem("acceptSSL")
+    let ssl = sessionStorage.getItem("acceptSSL");
 
     if (ssl) {
-      setAcceptSSL(true)
+      setAcceptSSL(true);
     }
 
     let params = searchparams.get("course");
@@ -66,7 +63,7 @@ export default function Terminal(props) {
     if (params !== "") {
       setCourse(params);
     }
-    retrieveDocs()
+    retrieveDocs();
   }, []);
 
   // useEffect(() =>{
@@ -75,17 +72,21 @@ export default function Terminal(props) {
   // })
 
   async function retrieveDocs() {
-    let data = []
-    let docCollections = collection(db, "Courses","airmon-ng","airmon-ng-course");
-    const docQueryRef = query(docCollections, orderBy("id","asc"))
+    let data = [];
+    let docCollections = collection(
+      db,
+      "Courses",
+      "airmon-ng",
+      "airmon-ng-course"
+    );
+    const docQueryRef = query(docCollections, orderBy("id", "asc"));
     const result = await getDocs(docQueryRef);
-    result.forEach(doc => {
-        data.push(doc.data())
-    })
+    result.forEach((doc) => {
+      data.push(doc.data());
+    });
     // console.log(data)
-    setData(data)
-}
-  
+    setData(data);
+  }
 
   useEffect(() => {
     if (authToken()) {
@@ -121,7 +122,7 @@ export default function Terminal(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {acceptSSL?  null:<BasicModal />}
+      {acceptSSL ? null : <BasicModal />}
       <main>
         <div className="background-container">
           <div className="stars" />
@@ -137,8 +138,9 @@ export default function Terminal(props) {
             <Header />
             <Grid container spacing={2}>
               <Grid xs={8}>
-                <Box sx={{ flexGrow: 1 }}>
-                  {acceptSSL ? (
+                <Box sx={{ flexGrow: 1}}>
+                  {acceptSSL ?  
+                    (
                     <iframe
                       title="terminal"
                       src={
@@ -154,7 +156,7 @@ export default function Terminal(props) {
                         outlineColor: "red",
                       }}
                     ></iframe>
-                  ) : (
+                    ):(
                     <div>
                       <Logo
                         style={{
