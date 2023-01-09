@@ -9,18 +9,12 @@ import VerticalLinearStepper from "../Components/VerticalLinearStepper";
 import ShootingStars from "../Components/ShootingStars";
 import { Typography } from "@mui/material";
 import { authToken } from "../Utilities/functions";
-import { useInterval } from "../Components/useInterval";
-import BasicModal from "../Components/BasicModal";
-import Logo from "../Components/Logo";
 import { orderBy, query, collection, getDocs } from "firebase/firestore";
 import { db } from "../Utilities/firebase-config";
-
-const FETCH_REFRESH_INTERVAL = 3000;
 
 export default function Terminal(props) {
   const [searchparams] = useSearchParams("");
   const [course, setCourse] = useState("");
-  const [acceptSSL, setAcceptSSL] = useState(false);
   const [data, setData] = useState([
     {
       label: "Loading...",
@@ -28,36 +22,7 @@ export default function Terminal(props) {
     },
   ]);
 
-  // useInterval(
-  //   async () => {
-  //     console.log("Fetching Url");
-  //     const response = await fetch("https://198.58.120.118:4433", {
-  //       mode: "no-cors",
-  //     }).catch((error) => {
-  //       if (error) {
-  //         console.log("SSL needs to be accepted");
-  //       } else {
-  //         setAcceptSSL(true);
-  //       }
-  //     });
-  //     console.log(response);
-  //     if (response) {
-  //       setAcceptSSL(true);
-  //       sessionStorage.setItem("acceptSSL", true);
-  //       console.log(response.status);
-  //     }
-  //   },
-  //   FETCH_REFRESH_INTERVAL,
-  //   acceptSSL
-  // );
-
   useEffect(() => {
-    let ssl = sessionStorage.getItem("acceptSSL");
-
-    if (ssl) {
-      setAcceptSSL(true);
-    }
-
     let params = searchparams.get("course");
 
     if (params !== "") {
@@ -65,11 +30,6 @@ export default function Terminal(props) {
     }
     retrieveDocs();
   }, []);
-
-  // useEffect(() =>{
-  //   fetchData(baseURL, course, setData);
-  //     console.log(data);
-  // })
 
   async function retrieveDocs() {
     let data = [];
@@ -122,7 +82,6 @@ export default function Terminal(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {/* {acceptSSL ? null : <BasicModal />} */}
       <main>
         <div className="background-container">
           <div className="stars" />
@@ -176,22 +135,6 @@ export default function Terminal(props) {
                         outlineColor: "red",
                       }}
                     ></iframe>
-                  // ) : (
-                  //   <div>
-                  //     <Logo
-                  //       style={{
-                  //         position: "relative",
-                  //         marginTop: 50,
-                  //         width: "95%",
-                  //         height: "100vh",
-                  //         opacity: 0.7,
-                  //         outlineStyle: "outset",
-                  //         outlineColor: "red",
-                  //       }}
-                  //     />
-                  //     <h2>Awaiting SSL to continue...</h2>
-                  //   </div>
-                  // )
                 }
                 </Box>
               </Grid>
