@@ -28,28 +28,28 @@ export default function Terminal(props) {
     },
   ]);
 
-  useInterval(
-    async () => {
-      console.log("Fetching Url");
-      const response = await fetch("https://198.58.120.118:4433", {
-        mode: "no-cors",
-      }).catch((error) => {
-        if (error) {
-          console.log("SSL needs to be accepted");
-        } else {
-          setAcceptSSL(true);
-        }
-      });
-      console.log(response);
-      if (response) {
-        setAcceptSSL(true);
-        sessionStorage.setItem("acceptSSL", true);
-        console.log(response.status);
-      }
-    },
-    FETCH_REFRESH_INTERVAL,
-    acceptSSL
-  );
+  // useInterval(
+  //   async () => {
+  //     console.log("Fetching Url");
+  //     const response = await fetch("https://198.58.120.118:4433", {
+  //       mode: "no-cors",
+  //     }).catch((error) => {
+  //       if (error) {
+  //         console.log("SSL needs to be accepted");
+  //       } else {
+  //         setAcceptSSL(true);
+  //       }
+  //     });
+  //     console.log(response);
+  //     if (response) {
+  //       setAcceptSSL(true);
+  //       sessionStorage.setItem("acceptSSL", true);
+  //       console.log(response.status);
+  //     }
+  //   },
+  //   FETCH_REFRESH_INTERVAL,
+  //   acceptSSL
+  // );
 
   useEffect(() => {
     let ssl = sessionStorage.getItem("acceptSSL");
@@ -122,7 +122,7 @@ export default function Terminal(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {acceptSSL ? null : <BasicModal />}
+      {/* {acceptSSL ? null : <BasicModal />} */}
       <main>
         <div className="background-container">
           <div className="stars" />
@@ -160,11 +160,11 @@ export default function Terminal(props) {
             <Grid container spacing={1}>
               <Grid xs={12}>
                 <Box sx={{ flexGrow: 1 }}>
-                  {acceptSSL ? (
+                  {
                     <iframe
                       title="terminal"
                       src={
-                        "https://198.58.120.118:4433/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
+                        "http://hackerbust.com/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
                       }
                       style={{
                         position: "relative",
@@ -176,22 +176,23 @@ export default function Terminal(props) {
                         outlineColor: "red",
                       }}
                     ></iframe>
-                  ) : (
-                    <div>
-                      <Logo
-                        style={{
-                          position: "relative",
-                          marginTop: 50,
-                          width: "95%",
-                          height: "100vh",
-                          opacity: 0.7,
-                          outlineStyle: "outset",
-                          outlineColor: "red",
-                        }}
-                      />
-                      <h2>Awaiting SSL to continue...</h2>
-                    </div>
-                  )}
+                  // ) : (
+                  //   <div>
+                  //     <Logo
+                  //       style={{
+                  //         position: "relative",
+                  //         marginTop: 50,
+                  //         width: "95%",
+                  //         height: "100vh",
+                  //         opacity: 0.7,
+                  //         outlineStyle: "outset",
+                  //         outlineColor: "red",
+                  //       }}
+                  //     />
+                  //     <h2>Awaiting SSL to continue...</h2>
+                  //   </div>
+                  // )
+                }
                 </Box>
               </Grid>
             </Grid>
