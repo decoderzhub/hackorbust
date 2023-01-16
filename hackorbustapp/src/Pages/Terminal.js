@@ -21,13 +21,12 @@ export default function Terminal(props) {
       description: `Retreving...`,
     },
   ]);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    let params = searchparams.get("course");
-
-    if (params !== "") {
-      setCourse(params);
-    }
+    //let username = searchparams.get("username");
+    console.log(props)
+    setCourse(props.location.state)
     retrieveDocs();
   }, []);
 
@@ -50,11 +49,11 @@ export default function Terminal(props) {
 
   useEffect(() => {
     if (authToken()) {
-      props.navigate("/terminal");
+      props.setState(props.location.state);
     }
 
     if (!authToken()) {
-      props.navigate("/");
+      props.setState("Login");
     }
   }, []);
 
@@ -123,7 +122,7 @@ export default function Terminal(props) {
                     <iframe
                       title="terminal"
                       src={
-                        "https://hackerbust.com/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux"
+                        `https://hackerbust.com/?port=6807&hostname=198.58.120.118&username=wifipro&password=a2FsaQo=&command=tmux new-session -A -s ${props.username}`
                       }
                       style={{
                         position: "relative",

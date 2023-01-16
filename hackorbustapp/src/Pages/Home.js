@@ -14,6 +14,7 @@ import ShootingStars from "../Components/ShootingStars";
 import Stack from "@mui/material/Stack";
 import { homeImages, cards } from "../Utilities/static";
 import { authToken } from "../Utilities/functions";
+import { getAuth } from "firebase/auth";
 
 export default function Home(props) {
   useEffect(() => {
@@ -32,10 +33,9 @@ export default function Home(props) {
 
   function handleClick(e) {
     const target = e.currentTarget.id;
-    console.log(target);
     switch (parseInt(target)) {
       case 0:
-        props.navigate("/novice");
+        props.setState("Novice");
         break;
       default:
         break;

@@ -55,7 +55,6 @@ export default function StickyHeadTable({ tableData, props }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  console.log(props)
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -66,13 +65,7 @@ export default function StickyHeadTable({ tableData, props }) {
   };
 
   function handleOnclick(e){
-    console.log(e.currentTarget.id)
-    props.navigate({
-        pathname: "/terminal",
-        search: createSearchParams({
-        course: e.currentTarget.id 
-        }).toString()
-    })
+    props.setState(e.currentTarget.id)
   }
 
   return (
